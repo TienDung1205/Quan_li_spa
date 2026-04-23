@@ -1,0 +1,29 @@
+﻿# Build outputs
+/build/
+/dist/
+/out/
+/target/
+
+# Java compiled/binary files
+*.class
+*.jar
+*.war
+*.ear
+*.jmod
+
+# Logs and temp files
+*.log
+*.tmp
+*.temp
+
+# IDE local/private files
+/.idea/
+*.iml
+.vscode/
+
+# NetBeans private/local config
+/nbproject/private/
+
+# OS files
+.DS_Store
+Thumbs.db
