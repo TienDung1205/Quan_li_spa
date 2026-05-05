@@ -40,16 +40,8 @@ public class KhachHangDAO extends DAO {
     public boolean isExistedEmail(KhachHang kh) {
         String sql = "SELECT id FROM tblKhachHang WHERE email = ?";
         String email = kh.getEmail();
-        if (email == null || email.isEmpty() || email.contains(" ")) {
-            return true;
-        }
-        int atIndex = email.indexOf('@');
-        if (atIndex <= 0 || atIndex != email.lastIndexOf('@') || atIndex == email.length() - 1) {
-            return true;
-        }
-        String domain = email.substring(atIndex + 1);
-        if (!domain.contains(".") || domain.startsWith(".") || domain.endsWith(".")) {
-            return true;
+        if (email == null || email.isEmpty()) {
+            return false;
         }
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, email);
@@ -65,8 +57,8 @@ public class KhachHangDAO extends DAO {
     public boolean isExistedSDT(KhachHang kh) {
         String sql = "SELECT id FROM tblKhachHang WHERE sdt = ?";
         String sdt = kh.getSdt();
-        if (sdt == null || !sdt.matches("\\d{10,11}")) {
-            return true;
+        if (sdt == null || sdt.isEmpty()) {
+            return false;
         }
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, sdt);

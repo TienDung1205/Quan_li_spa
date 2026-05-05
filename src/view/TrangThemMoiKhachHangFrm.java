@@ -75,6 +75,7 @@ public class TrangThemMoiKhachHangFrm extends JFrame implements ActionListener {
         btnThemMoi.setBounds(160, 210, 120, 32);
         btnThemMoi.addActionListener(this);
         panel.add(btnThemMoi);
+        getRootPane().setDefaultButton(btnThemMoi);
 
         setContentPane(panel);
     }
@@ -87,14 +88,35 @@ public class TrangThemMoiKhachHangFrm extends JFrame implements ActionListener {
     }
 
     private void btnThemMoiClick() {
-        String tenDangNhap = txtTenDangNhap.getText();
-        String matKhau = new String(txtMatKhau.getPassword());
-        String hoTen = txtHoTen.getText();
-        String email = txtEmail.getText();
-        String sdt = txtSdt.getText();
+        String tenDangNhap = txtTenDangNhap.getText().trim();
+        String matKhau = new String(txtMatKhau.getPassword()).trim();
+        String hoTen = txtHoTen.getText().trim();
+        String email = txtEmail.getText().trim();
+        String sdt = txtSdt.getText().trim();
 
-        if (tenDangNhap.isEmpty() || matKhau.isEmpty() || hoTen.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Nhap day du ten dang nhap, mat khau, ho ten.");
+        int minPasswordLength = 6;
+        String emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        String sdtPattern = "^0\\d{9,10}$";
+        
+        if (tenDangNhap.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ten dang nhap phai co it nhat 1 ky tu.");
+            return;
+        }
+        
+        if (matKhau.length() < minPasswordLength) {
+            JOptionPane.showMessageDialog(this, "Mat khau phai co it nhat 6 ky tu.");
+            return;
+        }
+        if (hoTen.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ho ten phai co it nhat 1 ky tu.");
+            return;
+        }
+        if (!email.matches(emailPattern)) {
+            JOptionPane.showMessageDialog(this, "Email khong hop le.");
+            return;
+        }
+        if (!sdt.matches(sdtPattern)) {
+            JOptionPane.showMessageDialog(this, "So dien thoai khong hop le.");
             return;
         }
 
@@ -110,11 +132,11 @@ public class TrangThemMoiKhachHangFrm extends JFrame implements ActionListener {
             return;
         }
         if (dao.isExistedEmail(kh)) {
-            JOptionPane.showMessageDialog(this, "Email da ton tai hoac khong hop le.");
+            JOptionPane.showMessageDialog(this, "Email da ton tai.");
             return;
         }
         if (dao.isExistedSDT(kh)) {
-            JOptionPane.showMessageDialog(this, "So dien thoai da ton tai hoac khong hop le.");
+            JOptionPane.showMessageDialog(this, "So dien thoai da ton tai.");
             return;
         }
         if (!dao.themMoiKH(kh)) {

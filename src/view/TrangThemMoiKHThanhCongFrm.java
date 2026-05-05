@@ -29,7 +29,7 @@ public class TrangThemMoiKHThanhCongFrm extends JFrame implements ActionListener
         btnVeTrangChu.setBounds(110, 80, 130, 30);
         btnVeTrangChu.addActionListener(this);
         panel.add(btnVeTrangChu);
-
+        
         setContentPane(panel);
     }
 

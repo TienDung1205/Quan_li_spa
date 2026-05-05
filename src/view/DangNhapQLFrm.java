@@ -46,7 +46,7 @@ public class DangNhapQLFrm extends JFrame implements ActionListener {
         btnDangNhap.setBounds(145, 115, 130, 30);
         btnDangNhap.addActionListener(this);
         panel.add(btnDangNhap);
-//        getRootPane().setDefaultButton(btnDangNhap);
+        getRootPane().setDefaultButton(btnDangNhap);
 
         setContentPane(panel);
         setResizable(false);

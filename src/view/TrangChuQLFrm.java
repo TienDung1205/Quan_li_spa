@@ -27,7 +27,7 @@ public class TrangChuQLFrm extends JFrame implements ActionListener {
 
         JPanel panel = new JPanel(null);
 
-        lblHoTen = new JLabel("Xin chao: " + (nv.getHoTen() == null ? nv.getTenDangNhap() : nv.getHoTen()));
+        lblHoTen = new JLabel("Xin chao " + nv.getHoTen());
         lblHoTen.setBounds(30, 20, 400, 25);
         panel.add(lblHoTen);
 
