@@ -3,7 +3,6 @@ package app;
 
 import config.DBConnection;
 import java.sql.Connection;
-import javax.swing.SwingUtilities;
 import view.DangNhapQLFrm;
 
 public class Main {
@@ -18,9 +17,7 @@ public class Main {
             System.out.println("KET NOI DB THAT BAI: " + ex.getMessage());
         }
 
-        SwingUtilities.invokeLater(() -> {
-            DangNhapQLFrm frm = new DangNhapQLFrm();
-            frm.setVisible(true);
-        });
+        DangNhapQLFrm frm = new DangNhapQLFrm();
+        frm.setVisible(true);
     }
 }
