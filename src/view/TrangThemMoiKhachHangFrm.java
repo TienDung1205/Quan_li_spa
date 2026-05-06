@@ -88,11 +88,11 @@ public class TrangThemMoiKhachHangFrm extends JFrame implements ActionListener {
     }
 
     private void btnThemMoiClick() {
-        String tenDangNhap = txtTenDangNhap.getText().trim();
-        String matKhau = new String(txtMatKhau.getPassword()).trim();
+        String tenDangNhap = txtTenDangNhap.getText();
+        String matKhau = new String(txtMatKhau.getPassword());
         String hoTen = txtHoTen.getText().trim();
-        String email = txtEmail.getText().trim();
-        String sdt = txtSdt.getText().trim();
+        String email = txtEmail.getText();
+        String sdt = txtSdt.getText();
 
         String tenDangNhapPattern = "^[a-zA-Z0-9_]+$";
         int minPasswordLength = 6;
@@ -104,12 +104,17 @@ public class TrangThemMoiKhachHangFrm extends JFrame implements ActionListener {
             return;
         }
         
+        if (!matKhau.equals(matKhau.trim())) {
+            JOptionPane.showMessageDialog(this, "Mat khau khong duoc co khoang trang o dau hoac cuoi.");
+            return;
+        }
+        
         if (matKhau.length() < minPasswordLength) {
             JOptionPane.showMessageDialog(this, "Mat khau phai co it nhat 6 ky tu.");
             return;
         }
         if (hoTen.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ho ten phai co it nhat 1 ky tu.");
+            JOptionPane.showMessageDialog(this, "Ho ten khong hop le.");
             return;
         }
         if (!email.matches(emailPattern)) {
