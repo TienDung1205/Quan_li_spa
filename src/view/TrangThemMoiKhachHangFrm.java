@@ -96,6 +96,7 @@ public class TrangThemMoiKhachHangFrm extends JFrame implements ActionListener {
 
         String tenDangNhapPattern = "^[a-zA-Z0-9_]+$";
         int minPasswordLength = 6;
+        String matKhauPattern = "^[\\p{ASCII}]+$";
         String emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
         String sdtPattern = "^0\\d{9,10}$";
         
@@ -111,6 +112,11 @@ public class TrangThemMoiKhachHangFrm extends JFrame implements ActionListener {
         
         if (matKhau.length() < minPasswordLength) {
             JOptionPane.showMessageDialog(this, "Mat khau phai co it nhat 6 ky tu.");
+            return;
+        }
+
+        if (!matKhau.matches(matKhauPattern)) {
+            JOptionPane.showMessageDialog(this, "Mat khau khong hop le.");
             return;
         }
         if (hoTen.isEmpty()) {
