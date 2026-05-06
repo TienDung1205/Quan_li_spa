@@ -12,7 +12,11 @@ public class NhanVienDAO extends DAO {
 
     public boolean checkDangNhap(NhanVien nv) {
         String sql = "SELECT id, tenDangNhap, hoTen, sdt, trangThai, chucVu "
-                + "FROM tblNhanVien WHERE tenDangNhap = ? AND matKhau = ? AND trangThai = ? AND chucVu = ?";
+        + "FROM tblNhanVien "
+        + "WHERE BINARY tenDangNhap = BINARY ? "
+        + "AND BINARY matKhau = BINARY ? "
+        + "AND trangThai = ? "
+        + "AND chucVu = ?";
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             nv.bindDangNhapParams(ps);
             ps.setString(3, "hoatDong");

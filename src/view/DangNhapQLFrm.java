@@ -56,9 +56,21 @@ public class DangNhapQLFrm extends JFrame implements ActionListener {
         try {
             String tenDangNhap = txtTenDangNhap.getText();
             String matKhau = new String(txtMatKhau.getPassword());
+            
+            String tenDangNhapPattern = "^[a-zA-Z0-9_]+$";
 
-            if (tenDangNhap.isEmpty() || matKhau.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Nhap day du thong tin dang nhap.");
+            if (!tenDangNhap.matches(tenDangNhapPattern)) {
+                JOptionPane.showMessageDialog(this, "Ten dang nhap khong hop le.");
+                return;
+            }
+
+            if (matKhau.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Mat khau khong duoc de trong.");
+                return;
+            }
+            
+            if (!matKhau.equals(matKhau.trim())) {
+                JOptionPane.showMessageDialog(this, "Mat khau khong hop le.");
                 return;
             }
 
