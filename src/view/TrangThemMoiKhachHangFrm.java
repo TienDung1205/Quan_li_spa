@@ -94,12 +94,13 @@ public class TrangThemMoiKhachHangFrm extends JFrame implements ActionListener {
         String email = txtEmail.getText().trim();
         String sdt = txtSdt.getText().trim();
 
+        String tenDangNhapPattern = "^[a-zA-Z0-9_]+$";
         int minPasswordLength = 6;
         String emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
         String sdtPattern = "^0\\d{9,10}$";
         
-        if (tenDangNhap.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ten dang nhap phai co it nhat 1 ky tu.");
+        if (!tenDangNhap.matches(tenDangNhapPattern)) {
+            JOptionPane.showMessageDialog(this, "Ten dang nhap khong hop le.");
             return;
         }
         
